@@ -1,0 +1,25 @@
+includes:
+    - vendor/phpstan/phpstan/conf/bleedingEdge.neon
+    - vendor/phpstan/phpstan-phpunit/extension.neon
+    - vendor/phpstan/phpstan-deprecation-rules/rules.neon
+    #- vendor/phpstan/phpstan-strict-rules/rules.neon
+
+parameters:
+    tmpDir: /tmp/phpstan
+    #editorUrl: 'phpstorm://open?file=%%file%%&line=%%line%%'
+    checkMissingIterableValueType: false
+    treatPhpDocTypesAsCertain: false
+    checkGenericClassInNonGenericObjectType: false
+    ignoreErrors:
+        - '#has invalid type Composer\\Script\\Event\.#'
+        - '#Call to an undefined method AMQPConnection::setConnectionName#'
+        - '#Used function Swoole\\.*#'
+        - '#with no value type specified in iterable type array#'
+        - '#return type has no value type specified in iterable type array#'
+        - '#return type has no value type specified in iterable type iterable#'
+        - '#type has no value type specified in iterable type array#'
+        - '#has no value type specified in iterable type array#'
+
+    level: 6
+    paths:
+        - src
