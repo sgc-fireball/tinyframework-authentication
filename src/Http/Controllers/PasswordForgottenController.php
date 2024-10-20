@@ -30,7 +30,7 @@ class PasswordForgottenController
     public function reset(PasswordForgottenRequest $request): Response
     {
         if (!$request->validate()) {
-            return Response::back()->withErrors($request->getErrorBag());
+            return Response::back()->withErrors($request->getErrorBag())->withInput();
         }
 
         $email = $request->post('email');

@@ -26,7 +26,7 @@ class PasswordResetController
     public function reset(PasswordResetRequest $request, string $code): Response
     {
         if (!$request->validate()) {
-            return Response::back()->withErrors($request->getErrorBag());
+            return Response::back()->withErrors($request->getErrorBag())->withInput();
         }
 
         $class = '\\' . config('auth.model');

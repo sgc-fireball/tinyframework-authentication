@@ -24,7 +24,7 @@ class LoginController
     public function login(LoginRequest $request): Response
     {
         if (!$request->validate()) {
-            return Response::back()->withErrors($request->getErrorBag());
+            return Response::back()->withErrors($request->getErrorBag())->withInput();
         }
 
         event(new LoginTryEvent($request));
