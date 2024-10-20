@@ -18,7 +18,7 @@ class AuthMiddleware implements MiddlewareInterface
         $class = '\\' . config('auth.model');
         if (!$request->user() && $userId = $request->session()->get('user_id')) {
             /** @var User|null $user */
-            if ($userId && $user = $class::query()->where('id', $userId)->first()) {
+            if ($user = $class::query()->where('id', '=', $userId)->first()) {
                 $request->user($user);
             }
         }

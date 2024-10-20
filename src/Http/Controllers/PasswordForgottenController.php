@@ -22,8 +22,11 @@ class PasswordForgottenController
         $this->redirectTo = route('auth.login');
     }
 
-    public function form(): Response
+    public function form(Request $request): Response
     {
+        if ($request->user()) {
+            return Response::redirect($request->get('redirect') ?: $this->redirectTo);
+        }
         return view('auth@password-forgotten');
     }
 

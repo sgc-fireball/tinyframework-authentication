@@ -18,6 +18,9 @@ class LoginController
 
     public function form(RequestInterface $request): Response
     {
+        if ($request->user()) {
+            return Response::redirect($request->get('redirect') ?: $this->redirectTo);
+        }
         return view('auth@login', ['redirect' => $request->get('redirect')]);
     }
 

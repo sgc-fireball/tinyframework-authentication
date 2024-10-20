@@ -18,8 +18,11 @@ class PasswordResetController
         $this->redirectTo = route('auth.login');
     }
 
-    public function form(string $code): Response
+    public function form(Request $request, string $code): Response
     {
+        if ($request->user()) {
+            return Response::redirect($request->get('redirect') ?: $this->redirectTo);
+        }
         return view('auth@password-reset', compact('code'));
     }
 
